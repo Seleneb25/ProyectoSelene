@@ -1,0 +1,24 @@
+<app-header titulo="List"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Lista de alumnos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    @for (alumno of alumnos; track alumno) {
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="'assets/imagen/' + alumno.foto" alt="Foto de {{ alumno.nombre }}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ alumno.nombre }}</h2>
+          <p>Matrícula: {{ alumno.matricula }}</p>
+          <p>Email: {{ alumno.correo }}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+</ion-content>
