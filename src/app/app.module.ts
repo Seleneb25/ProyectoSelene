@@ -21,7 +21,13 @@ const serviceWorkerConfig = ServiceWorkerModule.register('ngsw-worker.js', {
       mode: 'md' // Configuración explícita del modo (md para Material Design, ios para iOS)
     }),
     AppRoutingModule,
-    serviceWorkerConfig // Usamos la configuración separada
+    serviceWorkerConfig,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }) // Usamos la configuración separada
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
